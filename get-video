@@ -1,0 +1,21 @@
+#!/bin/bash
+
+folder=./videos
+video_id=$1
+opt=$2
+
+yt_url="https://www.youtube.com"
+opts="-f mp4 \
+--download-archive ids.txt \
+--write-description \
+--write-info-json \
+--write-annotations \
+--write-sub \
+--write-thumbnail\
+"
+
+if [[ $opt == "--only-data" ]]; then
+    opts+=" --skip-download"
+fi
+
+cd $folder && yt-dlp $opts "$yt_url/watch?v=$video_id"
